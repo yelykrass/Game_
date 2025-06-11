@@ -1,0 +1,33 @@
+body {
+  margin: 0;
+  font-family: "Pacifico", "Baloo 2", cursive, sans-serif;
+  background-color: antiquewhite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+}
+
+#game-container {
+  position: relative; /* Батьківський контейнер для position: absolute елементів. Зсуває елемент, але його "місце" лишається */
+  width: 800px;
+  height: 500px;
+  margin: 20px auto;
+  overflow: hidden; /* напр. Зображення більше, але видно буде тільки частину 800×400 пікселів. */
+  background: url("images/7575632.svg") center/cover no-repeat;
+  /* рамка */
+  border: 20px solid transparent; /* колір рамки прозорий */
+  border-image-source: url("images/7532353.jpg");
+  border-image-slice: 30; /* налаштувати під малюнок */
+  border-image-repeat: round;
+  border-image-width: 20px;
+  border-radius: 30px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.player {
+  position: absolute; /* Виймає елемент із потоку повністю */
+  width: 50px;
+  height: 50px;
+}
