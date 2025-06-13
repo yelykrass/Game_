@@ -33,35 +33,37 @@ class Game {
 
     checkCollision() {
         this.collisionInterval = setInterval(() => {
-            // Перевірка звичайних м'ячів
             this.balls.forEach((ball, index) => {
                 if (this.character.collidesWith(ball)) {
+                    // Якщо зіткнення — видаляємо м'яч, додаємо бали
                     this.container.removeChild(ball.element);
                     this.balls.splice(index, 1);
                     this.points += 10;
                     this.caughtBalls += 1;
                     this.updateScore();
 
-
+                    //показуємо експериментальний після 10!!!
                     if (this.caughtBalls === this.maxBalls && !this.experimentBall) {
                         this.showExperimentBall();
                     }
 
-                    // Game Over, якщо зібрано всі м'ячі (10 звичайних + 1 експериментальний)
+                    // Game Over(11)
                     if (this.caughtBalls === this.maxBalls + 1) {
                         this.endGame();
                     }
                 }
             });
 
-            // Перевірка експериментального м'яча
+            // Перевірка експериментального м'яча...
             if (this.experimentBall && this.character.collidesWith(this.experimentBall)) {
+                // Якщо зіткнення то видаляємо експериментальний м'яч, додаємо бали
                 this.container.removeChild(this.experimentBall.element);
                 this.experimentBall = null;
                 this.points += 10;
                 this.caughtBalls += 1;
                 this.updateScore();
 
+                // Game Over
                 if (this.caughtBalls === this.maxBalls + 1) {
                     this.endGame();
                 }
@@ -117,6 +119,7 @@ class Character {
         this.element.style.top = `${this.y}px`;
     }
     collidesWith(objeto) {
+        // Перевірка зіткнення 
         return (
             this.x < objeto.x + objeto.width &&
             this.x + this.width > objeto.x &&
@@ -142,7 +145,7 @@ class Ball {
     }
 }
 
-// Новий клас для експериментального м'яча
+
 class ExperimentBall {
     constructor() {
         this.x = Math.random() * 700 + 50;
